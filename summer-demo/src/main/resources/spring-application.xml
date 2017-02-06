@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <!-- 这里支持多种寻址方式：classpath和file -->
+                <value>classpath:app.properties</value>
+                <!-- 可以使用file的方式引入，这样可以将配置和代码分离 -->
+                <!-- <value>file:/opt/demo/config/demo-mq.properties</value>-->
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- 配置线程池 -->
+    <bean id="threadPoolTaskExecutor"
+          class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 线程池维护线程的最少数量 -->
+        <property name="corePoolSize" value="50"/>
+        <!-- 线程池维护线程所允许的空闲时间 -->
+        <property name="keepAliveSeconds" value="60"/>
+        <!-- 线程池维护线程的最大数量 -->
+        <property name="maxPoolSize" value="100"/>
+        <!-- 线程池所使用的缓冲队列 -->
+        <property name="queueCapacity" value="200"/>
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy"/>
+        </property>
+    </bean>
+
+    <bean id="sessionContent" class="org.smartx.summer.session.Impl.SessionManagerImpl"/>
+
+    <bean id="tokenProvider" class="org.smartx.summer.session.TokenProvider">
+        <property name="secret" value="${token.secret}"/>
+        <property name="audienceExpireTime" value="${token.audienceExpireTime}"/>
+        <property name="tokenAudSupportTag" value="${token.tokenAudSupportTag}"/>
+        <property name="tokenTagMaxNum" value="${token.tokenTagMaxNum}"/>
+    </bean>
+
+    <bean id="jwtTokenAuthFilter" class="org.smartx.summer.filter.JwtTokenAuthFilter">
+        <!--注册、登陆、忘记密码、获取验证码等不需要token 校验的配置-->
+        <property name="excludeUrl">
+            <set>
+                <value>/api/base/*</value>
+            </set>
+        </property>
+    </bean>
+
+    <import resource="spring-redis.xml"/>
+</beans>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+status: 是 Log4j2 自身的log级别
+monitorInterval：Log4j2能够自动检测修改配置文件和重新配置本身，设置间隔秒数。
+-->
+<Configuration status="warn" monitorInterval="1800" strict="true">
+
+    <Properties>
+        <Property name="log.path">logs</Property>
+        <Property name="log.pattern">%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t %C:%L - %m%n</Property>
+    </Properties>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${log.pattern}"/>
+        </Console>
+
+        <RollingFile name="infoLog" fileName="${log.path}/info.log"
+                     filePattern="${log.path}/%d{yyyy-MM-dd}-%i.log.gz">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${log.pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="errorLog" fileName="${log.path}/error.log"
+                     filePattern="${log.path}/%d{yyyy-MM-dd}-%i.log.gz">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${log.pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <asyncRoot level="INFO" includeLocation="true">="info"> <!-- 全局配置 -->
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="infoLog"/>
+            <AppenderRef ref="errorLog"/>
+        </asyncRoot>
+        <!-- 为sql语句配置特殊的Log级别，方便调试 -->
+        <!--<Logger name="com.xjj.dao" level="${log.sql.level}" additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>-->
+    </Loggers>
+</Configuration>

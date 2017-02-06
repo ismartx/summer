@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    	http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <context:component-scan base-package="org.smartx.summer.redis.*"/>
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="100"/>
+        <property name="maxIdle" value="50"/>
+        <property name="minIdle" value="20"/>   <!-- idle  是空闲的意思，连接池的空闲连接 -->
+        <property name="testOnBorrow" value="true"/>
+    </bean>
+
+    <bean id="jedisCluster"
+          class="org.smartx.summer.redis.JedisClusterConnectionFactoryBean">
+        <property name="servers" value="localhost:1111,localhost:2222"/> <!-- 请填写自己的redis 集群地址-->
+        <property name="poolConfig" ref="jedisPoolConfig"/>
+    </bean>
+</beans>
