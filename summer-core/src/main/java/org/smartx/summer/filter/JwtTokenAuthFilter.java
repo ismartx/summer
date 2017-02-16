@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.smartx.summer.bean.State;
-import org.smartx.summer.common.GetRequestIpUtil;
+import org.smartx.summer.common.IpUtils;
 import org.smartx.summer.session.SessionAndTokenConstants;
 import org.smartx.summer.session.TokenProvider;
 import org.springframework.http.HttpStatus;
@@ -68,7 +68,7 @@ public class JwtTokenAuthFilter extends OncePerRequestFilter {
         String authorizationHeader = request.getHeader(SessionAndTokenConstants.AUTHORIZATION_HEADER);
 
         if (StringUtils.isEmpty(authorizationHeader) || !authorizationHeader.startsWith("Bearer ")) {
-            logger.warn("did not find token in header,request:{},ip:{}", request.getRequestURL(), GetRequestIpUtil.getRemoteIP(request));
+            logger.warn("did not find token in header,request:{},ip:{}", request.getRequestURL(), IpUtils.getRemoteIP(request));
             convertMsgToJson(response, TokenProvider.DEFAULT_INVALID_JWT_MSG);
             return;
         }
@@ -86,7 +86,7 @@ public class JwtTokenAuthFilter extends OncePerRequestFilter {
             logger.warn("JWT signature does not match locally computed signature,token:{}", token);
             convertMsgToJson(response, TokenProvider.TOKEN_INVALID_SIGNATURE);
         } catch (final Exception e) {
-            logger.warn("Could not get claims,invalid token,IP:{},Cause:{}", GetRequestIpUtil.getRemoteIP(request), e.getMessage());
+            logger.warn("Could not get claims,invalid token,IP:{},Cause:{}", IpUtils.getRemoteIP(request), e.getMessage());
             convertMsgToJson(response, TokenProvider.DEFAULT_EXPIRE_TOKEN_MSG);
         }
     }

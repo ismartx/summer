@@ -5,7 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created by Ming on 2016/11/24.
  */
-public class GetRequestIpUtil {
+public final class IpUtils {
+
     public static String getRemoteIP(HttpServletRequest request) {
         String ip = request.getHeader("X-Real-IP") == null ? null
                 : request.getHeader("X-Real-IP");
