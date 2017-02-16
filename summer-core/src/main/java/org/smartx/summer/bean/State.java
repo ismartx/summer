@@ -4,8 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <p> 错误返回 </p>

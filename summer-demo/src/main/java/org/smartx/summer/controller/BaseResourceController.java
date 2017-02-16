@@ -73,7 +73,7 @@ public class BaseResourceController {
         userMap.put("01234567892", user);
     }
 
-    @ApiOperation(value = "注册",response = LoginDTO.class)
+    @ApiOperation(value = "注册", response = LoginDTO.class)
     @PostMapping("base/register")
     public ResponseEntity<?> register(@RequestBody LoginDTO loginDTO, HttpServletRequest request) {
         return ResponseEntity.ok(loginDTO);

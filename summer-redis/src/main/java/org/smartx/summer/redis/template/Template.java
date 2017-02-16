@@ -8,5 +8,5 @@ package org.smartx.summer.redis.template;
  * @author kext
  * @since summer 0.1
  */
-public interface Template<T > {
+public interface Template<T> {
 }

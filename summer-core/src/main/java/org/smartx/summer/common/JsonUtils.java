@@ -3,10 +3,6 @@ package org.smartx.summer.common;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
-import org.smartx.summer.bean.CombineRequest;
-import org.smartx.summer.bean.Pageable;
-import org.smartx.summer.bean.State;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
