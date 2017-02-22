@@ -2,8 +2,8 @@
 基于Spring MVC的Restful框架，用于快速实现Restful Api接口。
 
 ## 功能
-### v0.1
-* 支持组合接口
+### 1.0
+* [支持组合接口](https://github.com/ismartx/summer/wiki/%E7%BB%84%E5%90%88%E6%8E%A5%E5%8F%A3)
 * 基于 Jwt 的身份认证机制
 * 基于 redis 简单封装了 session ，以存取 token 相关数据
 * 添加了 @VerifyJwtRol 注解以校验身份
@@ -19,7 +19,7 @@
 <dependency>
     <groupId>org.smartx</groupId>
     <artifactId>summer-core</artifactId>
-    <version>0.1</version>
+    <version>1.0</version>
 </dependency>
 ```
 
@@ -43,23 +43,9 @@ public class HelloController {
     public ResponseEntity<?> delete() {
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    @PutMapping("api/post")
-    public ResponseEntity<?> post(@RequestBody LoginDTO loginDTO, HttpServletRequest request) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", 1);
-        return ResponseEntity.ok(jsonObject);
-    }
-
-    @PutMapping("api/put")
-    public ResponseEntity<?> put(@RequestBody LoginDTO loginDTO, HttpServletRequest request) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", 1);
-        return ResponseEntity.ok(jsonObject);
-    }
 }
 ```
-具体示例代码可以参考**summer-demo**项目。
+具体示例代码可以参考**[summer-demo](./summer-demo)**项目。
 
 ## License
 Apache License V2
