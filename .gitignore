@@ -1,5 +1,5 @@
 # eclipse ignore
-.settings/
+.settings
 .project
 .classpath
 
@@ -25,5 +25,5 @@ Thumbs.db
 hs_err_pid*
 /bin/
 
-out/
+out
 target
