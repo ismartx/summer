@@ -45,7 +45,10 @@ public class HelloController {
     }
 }
 ```
-具体示例代码可以参考**[summer-demo](./summer-demo)**项目。
+具体示例代码可以参考[summer-demo](./summer-demo)项目。
 
 ## License
 Apache License V2
+
+## Contributors
+[Contributors](./CONTRIBUTORS.md)
