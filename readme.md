@@ -1,3 +1,6 @@
+## summer
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
 ## 简介
 基于Spring MVC的Restful框架，用于快速实现Restful Api接口。
 
@@ -44,9 +47,6 @@ public class HelloController {
 }
 ```
 具体示例代码可以参考[summer-demo](./summer-demo)项目。
-
-## License
-Apache License V2
 
 ## Contributors
 [Contributors](./CONTRIBUTORS.md)
