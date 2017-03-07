@@ -1,5 +1,6 @@
 ## summer
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Build Status](https://travis-ci.org/ismartx/summer.svg?branch=master)](https://travis-ci.org/ismartx/summer)
 
 ## 简介
 基于Spring MVC的Restful框架，用于快速实现Restful Api接口。
