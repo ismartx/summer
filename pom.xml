@@ -38,7 +38,7 @@
         <disruptor.version>3.3.6</disruptor.version>
         <!-- spring -->
         <spring.version>4.3.3.RELEASE</spring.version>
-        <fastjson.version>1.2.18</fastjson.version>
+        <fastjson.version>1.2.31</fastjson.version>
         <apache.common.lang3.version>3.4</apache.common.lang3.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <apache.common.io.version>2.5</apache.common.io.version>
