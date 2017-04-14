@@ -59,8 +59,10 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
                     request.setAttribute(SessionAndTokenConstants.SESSION_USER_ID, userId);
                     request.setAttribute(SessionAndTokenConstants.TOKEN_CLAIMS, claims);
                 } catch (SignatureException exception) {
+                    response.setHeader("WWW-Authenticate", "xBasic realm=\"fake\"");
                     throw new AuthenticationException(TokenProvider.TOKEN_INVALID_SIGNATURE);
                 } catch (final Exception e) {
+                    response.setHeader("WWW-Authenticate", "xBasic realm=\"fake\"");
                     throw new AuthenticationException(TokenProvider.DEFAULT_INVALID_JWT_MSG);
                 }
             } else {

@@ -91,8 +91,11 @@ public class JwtTokenAuthFilter extends OncePerRequestFilter {
         }
     }
 
+
     public void convertMsgToJson(HttpServletResponse response, String errMsg) throws IOException {
         State errorResponse = new State(HttpStatus.UNAUTHORIZED.value(), errMsg);
+        //支持低端android 设备，防止 java.io.IOException : No authentication challenges found
+        response.setHeader("WWW-Authenticate", "xBasic realm=\"fake\"");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.getWriter().print(JSON.toJSON(errorResponse));
     }
