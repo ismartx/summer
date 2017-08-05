@@ -7,7 +7,7 @@
     <groupId>org.smartx</groupId>
     <artifactId>summer</artifactId>
     <packaging>pom</packaging>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1</version>
 
     <modules>
         <module>summer-core</module>
