@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.smartx.summer.annotation.EnableCache;
 import org.smartx.summer.annotation.VerifyJwtRole;
-import org.smartx.summer.bean.State;
 import org.smartx.summer.session.SessionAndTokenConstants;
 import org.smartx.summer.session.TokenProvider;
 import org.springframework.context.annotation.PropertySource;
@@ -16,16 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.TreeSet;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 /**
  * Created by Ming on 2016/11/3.
@@ -76,6 +71,7 @@ public class ResourceController {
         return ResponseEntity.ok(jsonObject);
     }
 
+    /*
     @ApiOperation(value = "获取当前用户的sessionkey", notes = "获取当前用户的sessionkey", response = TreeSet.class)
     @ApiResponses(value = {
             @ApiResponse(code = 401, message = "没有返回错误消息", response = Void.class),
@@ -87,6 +83,7 @@ public class ResourceController {
         logger.info("subject:{}", subject);
         return tokenProvider.getUserAllSessionKey(subject);
     }
+    */
 
     /*
     @ApiOperation(value = "删除当前用户的所有key")

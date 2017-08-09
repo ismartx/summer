@@ -38,10 +38,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.smartx</groupId>
-            <artifactId>summer-redis</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>5.2.4.Final</version>

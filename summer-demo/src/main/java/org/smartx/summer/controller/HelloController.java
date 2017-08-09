@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 
 import org.smartx.summer.annotation.VerifyJwtRole;
 import org.smartx.summer.bean.LoginDTO;
-import org.smartx.summer.session.SessionAndTokenConstants;
 import org.smartx.summer.session.SessionManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.TreeSet;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -66,9 +63,11 @@ public class HelloController {
     }
 
 
+    /*
     @GetMapping("allKey")
     public ResponseEntity<?> allKey() {
         TreeSet<String> treeSet = sessionManager.getKeysByPattern(SessionAndTokenConstants.SESSION_KEY_PREFIX);
         return ResponseEntity.ok(treeSet);
     }
+    */
 }
