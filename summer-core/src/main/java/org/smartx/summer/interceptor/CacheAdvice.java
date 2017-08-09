@@ -1,7 +1,7 @@
 package org.smartx.summer.interceptor;
 
+import org.smartx.commons.utils.JsonUtils;
 import org.smartx.summer.annotation.EnableCache;
-import org.smartx.summer.common.JsonUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

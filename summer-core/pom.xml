@@ -5,7 +5,7 @@
     <parent>
         <artifactId>summer</artifactId>
         <groupId>org.smartx</groupId>
-        <version>0.1</version>
+        <version>0.2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>summer-core</artifactId>
@@ -13,10 +13,6 @@
     <name>summer-core</name>
 
     <dependencies>
-        <dependency>
-            <groupId>org.smartx</groupId>
-            <artifactId>summer-redis</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -53,6 +49,18 @@
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.smartx</groupId>
+            <artifactId>redis-template</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.smartx</groupId>
+            <artifactId>commons</artifactId>
         </dependency>
 
     </dependencies>

@@ -1,7 +1,6 @@
 package org.smartx.summer.session;
 
 import java.util.Map;
-import java.util.TreeSet;
 
 /**
  * Created by Ming on 2016/11/10.
@@ -56,6 +55,6 @@ public interface SessionManager {
     /**
      * 正则匹配获取 keys
      */
-    TreeSet<String> getKeysByPattern(String regrex);
+    //TreeSet<String> getKeysByPattern(String regrex);
 
 }

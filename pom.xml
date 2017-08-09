@@ -7,12 +7,11 @@
     <groupId>org.smartx</groupId>
     <artifactId>summer</artifactId>
     <packaging>pom</packaging>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
 
     <modules>
         <module>summer-core</module>
         <module>summer-demo</module>
-        <module>summer-redis</module>
     </modules>
 
     <distributionManagement>
@@ -49,6 +48,9 @@
         <apache.common.beanUtils>1.9.3</apache.common.beanUtils>
         <javax.validation.version>1.1.0.Final</javax.validation.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- smartx -->
+        <smartx.redis-template.version>1.0</smartx.redis-template.version>
+        <smartx.common.version>1.0</smartx.common.version>
     </properties>
 
     <dependencyManagement>
@@ -56,11 +58,6 @@
             <dependency>
                 <groupId>org.smartx</groupId>
                 <artifactId>summer-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.smartx</groupId>
-                <artifactId>summer-redis</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -165,6 +162,16 @@
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>${javax.validation.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.smartx</groupId>
+                <artifactId>redis-template</artifactId>
+                <version>${smartx.redis-template.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.smartx</groupId>
+                <artifactId>commons</artifactId>
+                <version>${smartx.common.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -88,6 +88,7 @@ public class ResourceController {
         return tokenProvider.getUserAllSessionKey(subject);
     }
 
+    /*
     @ApiOperation(value = "删除当前用户的所有key")
     @GetMapping("user/deleAllKey")
     public ResponseEntity<?> deleAllKey(HttpServletRequest request) {
@@ -100,4 +101,5 @@ public class ResourceController {
         return ResponseEntity.ok(jsonObject);
 
     }
+    */
 }

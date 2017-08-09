@@ -1,8 +1,5 @@
 package org.smartx.summer.session;
 
-import com.alibaba.fastjson.JSON;
-
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +10,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -246,6 +242,7 @@ public class TokenProvider {
         return getUserIdFromSession(sessionKey);
     }
 
+    /*
     public void delUserAllSession(String subject) {
         TreeSet<String> treeSet = getUserAllSessionKey(subject);
         if (!CollectionUtils.isEmpty(treeSet)) {
@@ -259,7 +256,7 @@ public class TokenProvider {
         String pattern = SessionAndTokenConstants.SESSION_KEY_PREFIX.concat(subject).concat("*");
         return sessionManager.getKeysByPattern(pattern);
     }
-
+    */
 
     public void setTokenTagMaxNum(Integer tokenTagMaxNum) {
         this.tokenTagMaxNum = tokenTagMaxNum;

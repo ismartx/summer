@@ -1,13 +1,12 @@
 package org.smartx.summer.session.Impl;
 
-import org.smartx.summer.redis.template.HashRedisTemplate;
+import org.smartx.redis.template.HashRedisTemplate;
 import org.smartx.summer.session.SessionAndTokenConstants;
 import org.smartx.summer.session.SessionManager;
 import org.smartx.summer.session.SessionUser;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeSet;
 
 import javax.annotation.Resource;
 
@@ -69,8 +68,10 @@ public class SessionManagerImpl implements SessionManager {
         hashRedisTemplate.del(key);
     }
 
+    /*
     @Override
     public TreeSet<String> getKeysByPattern(String pattern) {
         return hashRedisTemplate.keys(pattern);
     }
+    */
 }
