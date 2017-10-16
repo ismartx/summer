@@ -19,13 +19,15 @@ public class TeePrintWriter extends PrintWriter {
         this.branch = branch;
     }
 
-    public void write(char buf[], int off, int len) {
+    @Override
+    public void write(char[] buf, int off, int len) {
         super.write(buf, off, len);
         super.flush();
         branch.write(buf, off, len);
         branch.flush();
     }
 
+    @Override
     public void write(String s, int off, int len) {
         super.write(s, off, len);
         super.flush();
@@ -33,6 +35,7 @@ public class TeePrintWriter extends PrintWriter {
         branch.flush();
     }
 
+    @Override
     public void write(int c) {
         super.write(c);
         super.flush();
@@ -40,6 +43,7 @@ public class TeePrintWriter extends PrintWriter {
         branch.flush();
     }
 
+    @Override
     public void flush() {
         super.flush();
         branch.flush();
