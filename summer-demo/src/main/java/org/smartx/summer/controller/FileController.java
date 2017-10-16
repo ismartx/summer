@@ -70,9 +70,15 @@ public class FileController {
             logger.error("下载异常：" + e);
         } finally {
             try {
-                if (null != out) out.flush();
-                if (null != out) out.close();
-                if (null != inputStream) inputStream.close();
+                if (null != out) {
+                    out.flush();
+                }
+                if (null != out) {
+                    out.close();
+                }
+                if (null != inputStream) {
+                    inputStream.close();
+                }
             } catch (IOException e) {
                 logger.error("下载异常：" + e);
             }
