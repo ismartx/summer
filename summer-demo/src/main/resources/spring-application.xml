@@ -34,7 +34,7 @@
         </property>
     </bean>
 
-    <bean id="sessionContent" class="org.smartx.summer.session.Impl.SessionManagerImpl"/>
+    <bean id="sessionContent" class="org.smartx.summer.session.impl.SessionManagerImpl"/>
 
     <bean id="tokenProvider" class="org.smartx.summer.session.TokenProvider">
         <property name="secret" value="${token.secret}"/>

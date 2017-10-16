@@ -1,4 +1,4 @@
-package org.smartx.summer.session.Impl;
+package org.smartx.summer.session.impl;
 
 import org.smartx.redis.template.HashRedisTemplate;
 import org.smartx.summer.session.SessionAndTokenConstants;
