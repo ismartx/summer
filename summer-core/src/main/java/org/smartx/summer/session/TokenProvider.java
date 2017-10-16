@@ -48,6 +48,8 @@ public class TokenProvider {
 
     public static final String TOKEN_INVALID_SIGNATURE = "Token invalid signature";
 
+    private static final Pattern TAG_PATTERN = Pattern.compile(":TAG.*");
+
     private static final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
 
     public String createJwt(String subject, Date date, String jti, String roles, String audience) {
@@ -224,13 +226,13 @@ public class TokenProvider {
     }
 
     public String buildAudIfNeed(String audience, String sessionKey) {
-        Matcher m = Pattern.compile(":TAG.*").matcher(sessionKey);
+        Matcher m = TAG_PATTERN.matcher(sessionKey);
         return m.find() ? audience.concat(m.group(0)).toUpperCase() : audience.toUpperCase();
     }
 
     public boolean hasTag(String value) {
         Assert.notNull(value, "miss value field");
-        return Pattern.compile(":TAG.*").matcher(value).find();
+        return TAG_PATTERN.matcher(value).find();
     }
 
     public Integer getUserIdFromSession(final String key) {
