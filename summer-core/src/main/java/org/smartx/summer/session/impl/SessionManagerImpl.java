@@ -21,7 +21,7 @@ public class SessionManagerImpl implements SessionManager {
     //这里仅保存 userId 和 tokenId
     @Override
     public void setSessionUser(String key, SessionUser sessionUser) {
-        Map<String, String> sessionMap = new HashMap<>();
+        Map<String, String> sessionMap = new HashMap<>(16);
         sessionMap.put(SessionAndTokenConstants.SESSION_USER_ID, sessionUser.getUid());
         sessionMap.put(SessionAndTokenConstants.SESSION_USER_TOKEN_ID, sessionUser.getJti());
         hashRedisTemplate.hmset(key, sessionMap);

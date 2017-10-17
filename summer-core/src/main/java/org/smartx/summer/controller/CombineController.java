@@ -58,7 +58,7 @@ public class CombineController {
     @PostMapping
     public ResponseEntity<List<CombineResponse>> combine(@RequestBody List<CombineRequest> combineRequests) {
         Map<RequestMappingInfo, HandlerMethod> handlerMethods = requestMappingHandlerMapping.getHandlerMethods();
-        Map<CombineRequest, HandlerMethod> handlerMethodMap = new HashMap<>();
+        Map<CombineRequest, HandlerMethod> handlerMethodMap = new HashMap<>(16);
         //利用传入的CombineRequest找到相应的handleMethod
         handlerMethods.entrySet().forEach(ms -> {
             combineRequests.forEach(req -> {
@@ -90,7 +90,7 @@ public class CombineController {
                         Map<String, Object> requestMappingInfoHeaderMap = expressions.stream().collect(
                                 Collectors.toMap(NameValueExpression::getName, NameValueExpression::getValue)
                         );
-                        Map<String, Object> positionMap = new HashMap<>();
+                        Map<String, Object> positionMap = new HashMap<>(16);
                         positionMap.put("version", req.getVersion());
 
                         if (positionMap.equals(requestMappingInfoHeaderMap)) {

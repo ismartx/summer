@@ -38,7 +38,7 @@ public class DefaultXUserAgentHeaderFormatter implements Formatter<XUserAgent> {
         if (StringUtils.isBlank(s)) {
             return null;
         }
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>(16);
         Stream.of(s.split(";")).filter(StringUtils::isNoneBlank).forEach(x -> {
             String[] split = x.split("=");
             if (split.length < 2) {
