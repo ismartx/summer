@@ -18,7 +18,7 @@ public final class SpringMvcContextHolder {
      * 实现ApplicationContextAware接口, 注入Context到静态变量中.
      */
     public static void setApplicationContext(ApplicationContext applicationContext) {
-        SpringMvcContextHolder.applicationContext = applicationContext; //NOSONAR
+        SpringMvcContextHolder.applicationContext = applicationContext;
     }
 
     /**

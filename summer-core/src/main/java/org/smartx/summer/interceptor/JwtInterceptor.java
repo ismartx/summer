@@ -50,7 +50,8 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
                 if (StringUtils.isEmpty(authorizationHeader) || !authorizationHeader.startsWith("Bearer ")) {
                     throw new AuthenticationException("Missing or invalid Authorization header.");
                 }
-                final String token = authorizationHeader.substring(7); // The part after "Bearer "
+                // The part after "Bearer "
+                final String token = authorizationHeader.substring(7);
                 try {
                     claims = tokenProvider.getClaimsFromToken(token);
 
@@ -75,7 +76,8 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
                 String[] requireRole = verifyJwtRole.roles();
                 String[] roles = tokenProvider.getRolesFromClaims(claims);
                 if (!Arrays.asList(roles).containsAll(Arrays.asList(requireRole))) {
-                    throw new AuthenticationException("You are not the require role."); //没有方法要求的角色
+                    // 没有方法要求的角色
+                    throw new AuthenticationException("You are not the require role.");
                 }
             }
             return true;

@@ -41,7 +41,9 @@ public class JwtTokenAuthFilter extends OncePerRequestFilter {
     @Resource
     private TokenProvider tokenProvider;
 
-    //可在注入时候配置
+    /**
+     * 可在注入时候配置
+     */
     private Set<Pattern> excludeUrl;
 
     public void setExcludeUrl(Set<Pattern> excludeUrl) {
@@ -73,7 +75,8 @@ public class JwtTokenAuthFilter extends OncePerRequestFilter {
             return;
         }
 
-        final String token = authorizationHeader.substring(7); // The part after "Bearer "
+        // The part after "Bearer "
+        final String token = authorizationHeader.substring(7);
 
         try {
             final Claims claims = tokenProvider.getClaimsFromToken(token);

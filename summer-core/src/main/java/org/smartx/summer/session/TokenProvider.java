@@ -33,7 +33,9 @@ public class TokenProvider {
     @Resource
     private SessionManager sessionManager;
 
-    //Token 的属性在注入 TokenProvider 时定义
+    /**
+     * Token 的属性在注入 TokenProvider 时定义
+     */
     private String secret = "YOUR_TOKEN_SECRET";
 
     private String audienceExpireTime = "APP:0;WEB:1800";

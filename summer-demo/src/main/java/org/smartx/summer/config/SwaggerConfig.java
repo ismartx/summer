@@ -75,16 +75,16 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        ApiInfo apiInfo = new ApiInfo("Summer 测试用例文档",//大标题
+        ApiInfo apiInfo = new ApiInfo("Summer 测试用例文档",
                 "1、请求时请带上 Request-Id  和 X-User-Agent;" +
                         "2、带权限接口需要带上 Authorization" +
                         "3、支持缓存的接口需要带上 If-None-Match",
 
-                "version 0.1",//版本
+                "version 0.1",
                 "smartx team",
                 new Contact("summer@qq.com", "url", "String email"),
-                "The Apache License, Version 2.0",//链接显示文字
-                "http://www.apache.org/licenses/LICENSE-2.0.html"//网站链接
+                "The Apache License, Version 2.0",
+                "http://www.apache.org/licenses/LICENSE-2.0.html"
         );
         return apiInfo;
     }

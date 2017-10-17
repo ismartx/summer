@@ -22,7 +22,14 @@ public interface SessionAndTokenConstants {
     String TOKEN_CLAIMS = "claims";
 
     enum audience {
-        WEB, MOBILE, WEIXIN, TABLET
+        // web
+        WEB,
+        // mobile
+        MOBILE,
+        // weixin
+        WEIXIN,
+        // tablet
+        TABLET
     }
 
 }

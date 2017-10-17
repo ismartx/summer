@@ -107,7 +107,8 @@ public class BaseResourceController {
             logger.info("重复登陆,sessionKey:{},userPhone:{}", sessionKey, userPhone);
         }
 
-        String jti = UUID.randomUUID().toString().replaceAll("-", "").toLowerCase(); //token 的id ,可自定义，比如使用时间戳
+        // token 的id ,可自定义，比如使用时间戳
+        String jti = UUID.randomUUID().toString().replaceAll("-", "").toLowerCase();
         String tokenAudience = tokenProvider.buildAudIfNeed(audience, sessionKey);
         String jwt = tokenProvider.createJwt(userPhone, new Date(), jti, loginUser.getRole(), tokenAudience);
 

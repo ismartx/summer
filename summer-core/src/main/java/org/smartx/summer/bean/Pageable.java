@@ -91,7 +91,10 @@ public class Pageable {
 
     public enum Direction {
 
-        ASC, DESC;
+        // 顺序
+        ASC,
+        // 倒序
+        DESC;
 
         /**
          * Returns the {@link Direction} enum for the given {@link String} value.
