@@ -35,7 +35,7 @@ public class LoggingFilter extends OncePerRequestFilter {
     private static ArrayList<Pattern> excludeUrl;
     private ThreadLocal<Boolean> isExclude = new ThreadLocal<>();
 
-    public static final List<String> RequestUsefulHeaders = new ArrayList<String>() {{
+    public static final List<String> REQUEST_USEFUL_HEADERS = new ArrayList<String>() {{
         add("Request-Id");
         add("Range");
         add("If-None-Match");
@@ -76,7 +76,7 @@ public class LoggingFilter extends OncePerRequestFilter {
 
         String queryString = request.getQueryString();
         String url = request.getRequestURL() + ((null == queryString) ? "" : ("?" + request.getQueryString()));
-        Map<String, String> headers = RequestUsefulHeaders.stream().filter(x -> !StringUtils.isBlank(request.getHeader(x))).
+        Map<String, String> headers = REQUEST_USEFUL_HEADERS.stream().filter(x -> !StringUtils.isBlank(request.getHeader(x))).
                 collect(Collectors.toMap(x -> x, request::getHeader));
         if (request instanceof RequestWrapper) {
             msg.append("request id=").append(request.getHeader("Request-Id")).append("; ");
