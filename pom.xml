@@ -16,17 +16,34 @@
 
     <distributionManagement>
         <repository>
-            <id>nexus</id>
-            <name>Team Nexus Release Repository</name>
+            <id>DDYS</id>
+            <name>Team DDYS Release Repository</name>
             <url>http://repo.dingdingyisheng.mobi/repository/maven-releases</url>
         </repository>
         <snapshotRepository>
-            <id>nexus</id>
-            <name>Team Nexus Snapshot Repository</name>
+            <id>DDYS</id>
+            <name>Team DDYS Snapshot Repository</name>
             <url>http://repo.dingdingyisheng.mobi/repository/maven-snapshots</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>DDYS</id>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+            <url>http://repo.dingdingyisheng.mobi/repository/maven-public/</url>
+        </repository>
+    </repositories>
 
     <properties>
         <!-- testing -->
