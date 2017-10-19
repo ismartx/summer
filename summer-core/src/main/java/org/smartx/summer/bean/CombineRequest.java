@@ -81,4 +81,23 @@ public class CombineRequest {
     public void setVersion(String version) {
         this.version = version;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        CombineRequest that = (CombineRequest) o;
+
+        return requestId != null ? requestId.equals(that.requestId) : that.requestId == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return requestId != null ? requestId.hashCode() * 37 : 0;
+    }
 }
