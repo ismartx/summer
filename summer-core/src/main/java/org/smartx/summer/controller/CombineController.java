@@ -60,46 +60,42 @@ public class CombineController {
         Map<RequestMappingInfo, HandlerMethod> handlerMethods = requestMappingHandlerMapping.getHandlerMethods();
         Map<CombineRequest, HandlerMethod> handlerMethodMap = new HashMap<>(16);
         //利用传入的CombineRequest找到相应的handleMethod
-        handlerMethods.entrySet().forEach(ms -> {
-            combineRequests.forEach(req -> {
-                String url = req.getUrl().startsWith("/") ? req.getUrl() : "/" + req.getUrl();
-                List<String> matchingPatterns = ms.getKey().getPatternsCondition().getMatchingPatterns(url);
-                Set<RequestMethod> methods = ms.getKey().getMethodsCondition().getMethods();
-                HeadersRequestCondition headersCondition = ms.getKey().getHeadersCondition();
-                Set<NameValueExpression<String>> expressions = headersCondition.getExpressions();
-                if (matchingPatterns != null && matchingPatterns.size() > 0 && methods.contains(RequestMethod.valueOf(req.getMethod()))) {
-
-
-                    //判断：1. 组合接口没有指定version值，并且当前的HandleMethod的RequestMappingInfo也没有header值
-                    //     2. 组合接口指定的version的值为v1，并且当前的HandleMethod的RequestMappingInfo也没有指定header值
-                    if ((null == req.getVersion() && 0 == expressions.size())
-                            || (0 == expressions.size() && "v1".equalsIgnoreCase(req.getVersion()))) {
-                        //没有header要求
+        handlerMethods.entrySet().forEach(ms -> combineRequests.forEach(req -> {
+            String url = req.getUrl().startsWith("/") ? req.getUrl() : "/" + req.getUrl();
+            List<String> matchingPatterns = ms.getKey().getPatternsCondition().getMatchingPatterns(url);
+            Set<RequestMethod> methods = ms.getKey().getMethodsCondition().getMethods();
+            HeadersRequestCondition headersCondition = ms.getKey().getHeadersCondition();
+            Set<NameValueExpression<String>> expressions = headersCondition.getExpressions();
+            if (matchingPatterns != null && matchingPatterns.size() > 0 && methods.contains(RequestMethod.valueOf(req.getMethod()))) {
+                //判断：1. 组合接口没有指定version值，并且当前的HandleMethod的RequestMappingInfo也没有header值
+                //     2. 组合接口指定的version的值为v1，并且当前的HandleMethod的RequestMappingInfo也没有指定header值
+                if ((null == req.getVersion() && 0 == expressions.size())
+                        || (0 == expressions.size() && "v1".equalsIgnoreCase(req.getVersion()))) {
+                    //没有header要求
+                    handlerMethodMap.put(req, ms.getValue());
+                } else if (null == req.getVersion() && expressions.size() > 0) {
+                    Map<String, Object> requestMappingInfoHeaderMap = expressions.stream().collect(
+                            Collectors.toMap(NameValueExpression::getName, NameValueExpression::getValue)
+                    );
+                    // 组合接口没有指定version值，但是当前HandleMethod的RequestMappingInfo的header的version值为v1
+                    //由于默认使用v1的方法，所以满足条件
+                    if ("v1".equalsIgnoreCase(requestMappingInfoHeaderMap.get("version").toString())) {
                         handlerMethodMap.put(req, ms.getValue());
-                    } else if (null == req.getVersion() && expressions.size() > 0) {
-                        Map<String, Object> requestMappingInfoHeaderMap = expressions.stream().collect(
-                                Collectors.toMap(NameValueExpression::getName, NameValueExpression::getValue)
-                        );
-                        // 组合接口没有指定version值，但是当前HandleMethod的RequestMappingInfo的header的version值为v1
-                        //由于默认使用v1的方法，所以满足条件
-                        if ("v1".equalsIgnoreCase(requestMappingInfoHeaderMap.get("version").toString())) {
-                            handlerMethodMap.put(req, ms.getValue());
-                        }
-                    } else if (req.getVersion() != null && expressions.size() > 0) {
-                        //当前handleMethod的RequestMappingInfo知道的header的值
-                        Map<String, Object> requestMappingInfoHeaderMap = expressions.stream().collect(
-                                Collectors.toMap(NameValueExpression::getName, NameValueExpression::getValue)
-                        );
-                        Map<String, Object> positionMap = new HashMap<>(16);
-                        positionMap.put("version", req.getVersion());
+                    }
+                } else if (req.getVersion() != null && expressions.size() > 0) {
+                    //当前handleMethod的RequestMappingInfo知道的header的值
+                    Map<String, Object> requestMappingInfoHeaderMap = expressions.stream().collect(
+                            Collectors.toMap(NameValueExpression::getName, NameValueExpression::getValue)
+                    );
+                    Map<String, Object> positionMap = new HashMap<>(16);
+                    positionMap.put("version", req.getVersion());
 
-                        if (positionMap.equals(requestMappingInfoHeaderMap)) {
-                            handlerMethodMap.put(req, ms.getValue());
-                        }
+                    if (positionMap.equals(requestMappingInfoHeaderMap)) {
+                        handlerMethodMap.put(req, ms.getValue());
                     }
                 }
-            });
-        });
+            }
+        }));
         List<CombineResponse> combineResponses = new ArrayList<>(combineRequests.size());
         LocalVariableTableParameterNameDiscoverer localVariableTableParameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
         //执行handleMethod
