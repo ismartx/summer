@@ -14,5 +14,10 @@ import java.util.List;
  */
 public interface MessageConvertersRegister {
 
+    /**
+     * 注册器
+     *
+     * @param converters
+     */
     void registry(List<HttpMessageConverter<?>> converters);
 }
