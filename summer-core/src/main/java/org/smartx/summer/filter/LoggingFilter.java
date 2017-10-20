@@ -57,12 +57,12 @@ public class LoggingFilter extends OncePerRequestFilter {
 
         try {
             filterChain.doFilter(request, response);
-            //response.flushBuffer();
         } catch (Exception e) {
             logger.error("error to filter e={}", e);
         } finally {
             logRequest(request);
             logResponse((ResponseWrapper) response);
+            this.isExclude.remove();
         }
 
     }
