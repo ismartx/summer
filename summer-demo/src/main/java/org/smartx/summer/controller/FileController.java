@@ -26,6 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 public class FileController {
     private final static Logger logger = LoggerFactory.getLogger(FileController.class);
 
+    private static final String RANGE = "Range";
+
     @GetMapping(value = "/jooq")
     public ResponseEntity downFile(HttpServletResponse response, HttpServletRequest request) {
         InputStream inputStream = null;
@@ -47,11 +49,11 @@ public class FileController {
             response.setHeader("Content-Disposition", "attachment;fileName=" + file.getName());
             inputStream = new FileInputStream(file);
             long pos = 0;
-            if (null != request.getHeader("Range")) {
+            if (null != request.getHeader(RANGE)) {
                 // 断点续传
                 response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
                 try {
-                    pos = Long.parseLong(request.getHeader("Range").replaceAll("bytes=", "").replaceAll("-", ""));
+                    pos = Long.parseLong(request.getHeader(RANGE).replaceAll("bytes=", "").replaceAll("-", ""));
                 } catch (NumberFormatException e) {
                     pos = 0;
                 }

@@ -55,6 +55,10 @@ public class CombineController {
 
     private static final Logger logger = LoggerFactory.getLogger(CombineController.class);
 
+    private static final String V1 = "v1";
+
+    private static final String VERSION = "version";
+
     @PostMapping
     public ResponseEntity<List<CombineResponse>> combine(@RequestBody List<CombineRequest> combineRequests) {
         Map<RequestMappingInfo, HandlerMethod> handlerMethods = requestMappingHandlerMapping.getHandlerMethods();
@@ -70,7 +74,7 @@ public class CombineController {
                 //判断：1. 组合接口没有指定version值，并且当前的HandleMethod的RequestMappingInfo也没有header值
                 //     2. 组合接口指定的version的值为v1，并且当前的HandleMethod的RequestMappingInfo也没有指定header值
                 if ((null == req.getVersion() && 0 == expressions.size())
-                        || (0 == expressions.size() && "v1".equalsIgnoreCase(req.getVersion()))) {
+                        || (0 == expressions.size() && V1.equalsIgnoreCase(req.getVersion()))) {
                     //没有header要求
                     handlerMethodMap.put(req, ms.getValue());
                 } else if (null == req.getVersion() && expressions.size() > 0) {
@@ -79,7 +83,7 @@ public class CombineController {
                     );
                     // 组合接口没有指定version值，但是当前HandleMethod的RequestMappingInfo的header的version值为v1
                     //由于默认使用v1的方法，所以满足条件
-                    if ("v1".equalsIgnoreCase(requestMappingInfoHeaderMap.get("version").toString())) {
+                    if (V1.equalsIgnoreCase(requestMappingInfoHeaderMap.get(VERSION).toString())) {
                         handlerMethodMap.put(req, ms.getValue());
                     }
                 } else if (req.getVersion() != null && expressions.size() > 0) {
@@ -88,7 +92,7 @@ public class CombineController {
                             Collectors.toMap(NameValueExpression::getName, NameValueExpression::getValue)
                     );
                     Map<String, Object> positionMap = new HashMap<>(16);
-                    positionMap.put("version", req.getVersion());
+                    positionMap.put(VERSION, req.getVersion());
 
                     if (positionMap.equals(requestMappingInfoHeaderMap)) {
                         handlerMethodMap.put(req, ms.getValue());

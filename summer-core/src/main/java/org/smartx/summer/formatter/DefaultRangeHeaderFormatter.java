@@ -21,6 +21,9 @@ import java.util.stream.Stream;
  * @since summer 0.1
  */
 public class DefaultRangeHeaderFormatter implements Formatter<Pageable> {
+
+    private static final int LENGTH = 2;
+
     @Override
     public Pageable parse(String s, Locale locale) throws ParseException {
         return convert(s);
@@ -44,12 +47,12 @@ public class DefaultRangeHeaderFormatter implements Formatter<Pageable> {
     }
 
     private static Pageable doConvert(String s) {
-        LinkedMultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<String, String>();
+        LinkedMultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
         Stream.of(s.split(";")).filter(StringUtils::isNoneBlank).forEach(x -> {
             String[] var = x.split(",");
             Stream.of(var).filter(StringUtils::isNoneBlank).forEach(y -> {
                 String[] var1 = y.split("=");
-                if (var1.length < 2) {
+                if (var1.length < LENGTH) {
                     return;
                 }
                 multiValueMap.add(var1[0].trim(), var1[1].trim());

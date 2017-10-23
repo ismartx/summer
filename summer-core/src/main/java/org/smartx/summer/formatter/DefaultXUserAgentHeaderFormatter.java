@@ -20,6 +20,9 @@ import java.util.stream.Stream;
  * @since summer 0.1
  */
 public class DefaultXUserAgentHeaderFormatter implements Formatter<XUserAgent> {
+
+    private static final int LENGTH = 2;
+
     @Override
     public XUserAgent parse(String s, Locale locale) throws ParseException {
         return convert(s);
@@ -41,7 +44,7 @@ public class DefaultXUserAgentHeaderFormatter implements Formatter<XUserAgent> {
         HashMap<String, String> map = new HashMap<>(16);
         Stream.of(s.split(";")).filter(StringUtils::isNoneBlank).forEach(x -> {
             String[] split = x.split("=");
-            if (split.length < 2) {
+            if (split.length < LENGTH) {
                 return;
             }
             map.put(split[0], split[1]);

@@ -26,6 +26,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 @ControllerAdvice
 public class CacheAdvice implements ResponseBodyAdvice<Object> {
 
+    private static final String GET = "GET";
+
+    private static final String HEAD = "HEAD";
+
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
         return methodParameter.getMethod().getDeclaredAnnotation(EnableCache.class) != null;
@@ -34,7 +38,7 @@ public class CacheAdvice implements ResponseBodyAdvice<Object> {
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         String etag = serverHttpRequest.getHeaders().getFirst(HttpHeaders.IF_NONE_MATCH);
-        if (!(("GET".equals(serverHttpRequest.getMethod().name())) || ("HEAD".equals(serverHttpRequest.getMethod().name())))) {
+        if (!((GET.equals(serverHttpRequest.getMethod().name())) || (HEAD.equals(serverHttpRequest.getMethod().name())))) {
             return o;
         }
         String md5;
