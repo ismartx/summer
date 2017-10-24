@@ -31,6 +31,7 @@ public interface SessionManager {
      *
      * @param key
      * @param field
+     * @return
      */
     Boolean delSessionField(String key, String field);
 
@@ -39,6 +40,7 @@ public interface SessionManager {
      *
      * @param key
      * @param field
+     * @return
      */
     String getSessionField(String key, String field);
 
@@ -46,6 +48,7 @@ public interface SessionManager {
      * 判断key是否过期
      *
      * @param key
+     * @return
      */
     boolean isExistSessionKey(String key);
 
@@ -54,6 +57,7 @@ public interface SessionManager {
      *
      * @param key
      * @param field
+     * @return
      */
     boolean isExistSessionField(String key, String field);
 
@@ -62,6 +66,7 @@ public interface SessionManager {
      *
      * @param key
      * @param seconds
+     * @return
      */
     boolean setSessionExpire(String key, int seconds);
 
@@ -69,6 +74,7 @@ public interface SessionManager {
      * 获取 session user
      *
      * @param key
+     * @return
      */
     Map<String, String> getSessionUser(String key);
 
