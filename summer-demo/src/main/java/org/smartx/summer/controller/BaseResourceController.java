@@ -39,6 +39,8 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * Created by Ming on 2016/10/22.
+ *
+ * @author Ming
  */
 @RestController
 @RequestMapping("api")

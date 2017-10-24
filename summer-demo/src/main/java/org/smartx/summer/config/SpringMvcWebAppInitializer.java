@@ -17,6 +17,8 @@ import javax.servlet.ServletRegistration;
  * Created by binglin on 2016/10/27.
  *
  * 代替web.xml文件
+ *
+ * @author binglin
  */
 public class SpringMvcWebAppInitializer implements WebApplicationInitializer {
     @Override

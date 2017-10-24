@@ -24,6 +24,8 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * Created by Ming on 2016/11/3.
+ *
+ * @author Ming
  */
 @Api(value = "resource", description = "具体资源类")
 @RestController

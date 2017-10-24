@@ -21,6 +21,8 @@ import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * Created by Ming on 2016/11/1. Swagger 配置，官网：https://springfox.github.io/springfox/docs/current/
+ *
+ * @author Ming
  */
 @Configuration
 @EnableSwagger2

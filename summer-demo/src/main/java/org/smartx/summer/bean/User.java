@@ -2,6 +2,8 @@ package org.smartx.summer.bean;
 
 /**
  * Created by binglin on 2016/10/20.
+ *
+ * @author binglin
  */
 public class User {
 

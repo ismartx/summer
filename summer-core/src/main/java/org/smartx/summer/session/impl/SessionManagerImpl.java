@@ -12,6 +12,8 @@ import javax.annotation.Resource;
 
 /**
  * Created by Ming on 2016/11/10.
+ *
+ * @author Ming
  */
 public class SessionManagerImpl implements SessionManager {
 

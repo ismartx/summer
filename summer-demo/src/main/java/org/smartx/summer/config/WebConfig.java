@@ -24,6 +24,8 @@ import java.util.List;
  * Created by binglin on 2016/10/27.
  *
  * 代替spring-mvc.xml文件
+ *
+ * @author binglin
  */
 
 @Configuration

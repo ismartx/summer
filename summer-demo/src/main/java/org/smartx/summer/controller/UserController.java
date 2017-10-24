@@ -28,6 +28,8 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * Created by binglin on 2016/10/20.
+ *
+ * @author binglin
  */
 
 @RestController

@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by binglin on 2016/11/4.
+ *
+ * @author binglin
  */
 @RestController
 @RequestMapping("files")

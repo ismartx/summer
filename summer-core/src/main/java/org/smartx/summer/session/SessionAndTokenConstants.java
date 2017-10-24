@@ -2,6 +2,8 @@ package org.smartx.summer.session;
 
 /**
  * Created by Ming on 2016/11/10.
+ *
+ * @author Ming
  */
 public interface SessionAndTokenConstants {
 

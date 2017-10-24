@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by binglin on 2016/10/28.
+ * @author binglin
  */
 
 public class FastJsonMessageConverterRegister implements MessageConvertersRegister {

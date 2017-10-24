@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Ming on 2016/10/27.
+ *
+ * @author Ming
  */
 @RestController
 public class HelloController {
