@@ -38,6 +38,8 @@ public class JwtTokenAuthFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenAuthFilter.class);
 
+    private static final String BEARER = "Bearer ";
+
     @Resource
     private TokenProvider tokenProvider;
 
@@ -69,7 +71,7 @@ public class JwtTokenAuthFilter extends OncePerRequestFilter {
         }
         String authorizationHeader = request.getHeader(SessionAndTokenConstants.AUTHORIZATION_HEADER);
 
-        if (StringUtils.isEmpty(authorizationHeader) || !authorizationHeader.startsWith("Bearer ")) {
+        if (StringUtils.isEmpty(authorizationHeader) || !authorizationHeader.startsWith(BEARER)) {
             logger.warn("did not find token in header,request:{},ip:{}", request.getRequestURL(), IpUtils.getRemoteIP(request));
             convertMsgToJson(response, TokenProvider.DEFAULT_INVALID_JWT_MSG);
             return;

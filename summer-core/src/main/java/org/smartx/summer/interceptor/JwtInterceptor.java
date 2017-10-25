@@ -30,6 +30,8 @@ import io.jsonwebtoken.SignatureException;
 @Component
 public class JwtInterceptor extends HandlerInterceptorAdapter {
 
+    private static final String BEARER = "Bearer ";
+
     @Resource
     private TokenProvider tokenProvider;
 
@@ -47,7 +49,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             Claims claims = null;
             if (verifyJwtRole.verifyJwt()) {
                 String authorizationHeader = request.getHeader(SessionAndTokenConstants.AUTHORIZATION_HEADER);
-                if (StringUtils.isEmpty(authorizationHeader) || !authorizationHeader.startsWith("Bearer ")) {
+                if (StringUtils.isEmpty(authorizationHeader) || !authorizationHeader.startsWith(BEARER)) {
                     throw new AuthenticationException("Missing or invalid Authorization header.");
                 }
                 // The part after "Bearer "
